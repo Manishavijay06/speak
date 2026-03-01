@@ -5,7 +5,11 @@ import { Navigate } from 'react-router-dom'
 import { useAuth } from '../auth/AuthContext'
 
 export default function Login() {
-  const { user } = useAuth()
+  const { user, loading } = useAuth()
+
+  if (loading) {
+    return <div style={{ maxWidth: 400, margin: 'auto', marginTop: 100 }}>Loading...</div>
+  }
 
   if (user) {
     return <Navigate to="/" replace />
